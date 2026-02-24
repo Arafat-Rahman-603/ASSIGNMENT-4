@@ -105,7 +105,7 @@ function renderJobs() {
         </div>
 
         <button onclick="deleteJob(${index})"
-        class="w-8 h-8 flex items-center justify-center border rounded-full text-gray-400 hover:bg-gray-100"><i class="fa-solid fa-trash-can"></i></button>
+        class="w-8 h-8 flex items-center justify-center border rounded-full text-gray-400 hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all duration-300 cursor-pointer"><i class="fa-solid fa-trash-can"></i></button>
       </div>
 
       <span class="inline-block mt-3 text-xs px-3 py-1 rounded ${statusStyle(job.status)}">
