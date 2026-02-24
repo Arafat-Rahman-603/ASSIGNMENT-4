@@ -116,10 +116,10 @@ function renderJobs() {
 
       <div class="flex gap-2 mt-4">
         <button onclick="setStatus(${index}, 'interview')"
-        class="border cursor-pointer border-green-500 text-green-600 px-3 py-1 rounded text-sm hover:scale-105 transition-all duration-300">INTERVIEW</button>
+        class="border cursor-pointer border-green-500 text-green-600 px-3 py-1 rounded text-sm hover:scale-105 active:scale-95 transition-all duration-300">INTERVIEW</button>
 
         <button onclick="setStatus(${index}, 'rejected')"
-        class="border cursor-pointer border-red-500 text-red-600 px-3 py-1 rounded text-sm hover:scale-105 transition-all duration-300">REJECTED</button>
+        class="border cursor-pointer border-red-500 text-red-600 px-3 py-1 rounded text-sm hover:scale-105 active:scale-95 transition-all duration-300">REJECTED</button>
       </div>
 
     </div>`;
