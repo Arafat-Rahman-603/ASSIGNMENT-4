@@ -57,3 +57,80 @@ const jobs = [
   },
 ];
 
+let filter = "all";
+
+function setFilter(type, btn) {
+  filter = type;
+
+  document.querySelectorAll(".filterBtn").forEach((btn) => {
+    btn.classList.remove("bg-blue-600", "text-white", "border-blue-600");
+    btn.classList.add("bg-white");
+  });
+
+  btn.classList.add("bg-blue-600", "text-white", "border-blue-600");
+  btn.classList.remove("bg-white");
+
+  renderJobs();
+}
+
+function renderJobs() {
+  const jobList = document.getElementById("jobList");
+  jobList.innerHTML = "";
+
+  const filteredJobs = jobs.filter((job) => {
+    if (filter === "all") return true;
+    return job.status === filter;
+  });
+
+  if (filteredJobs.length === 0) {
+    jobList.innerHTML = `
+      <div class="bg-white border border-gray-200 rounded-xl p-10 text-center">
+        <img class="w-20 mx-auto" src="./jobs.png" alt="">
+        <p class="text-2xl text-[#002b5c] font-bold">No jobs available</p>
+        <p class="text-md text-gray-400 mt-1">Check back soon for new job opportunities</p>
+      </div>`;
+    updateStats(0);
+    return;
+  }
+
+  filteredJobs.forEach((job, index) => {
+    jobList.innerHTML += `
+    <div class="bg-white rounded-xl border border-gray-200 p-6">
+
+      <div class="flex justify-between">
+        <div>
+          <h3 class="text-[#002b5c] font-semibold text-lg">${job.company}</h3>
+          <p class="text-gray-600">${job.title}</p>
+          <p class="text-gray-500 text-sm mt-1">${job.meta}</p>
+        </div>
+
+        <button onclick="deleteJob(${index})"
+        class="w-8 h-8 flex items-center justify-center border rounded-full text-gray-400 hover:bg-gray-100"><i class="fa-solid fa-trash-can"></i></button>
+      </div>
+
+      <span class="inline-block mt-3 text-xs px-3 py-1 rounded ${statusStyle(job.status)}">
+        ${statusText(job.status)}
+      </span>
+
+      <p class="text-gray-600 text-sm mt-3">${job.desc}</p>
+
+      <div class="flex gap-2 mt-4">
+        <button onclick="setStatus(${index}, 'interview')"
+        class="border cursor-pointer border-green-500 text-green-600 px-3 py-1 rounded text-sm">INTERVIEW</button>
+
+        <button onclick="setStatus(${index}, 'rejected')"
+        class="border cursor-pointer border-red-500 text-red-600 px-3 py-1 rounded text-sm">REJECTED</button>
+      </div>
+
+    </div>`;
+  });
+
+  updateStats(filteredJobs.length);
+}
+
+function statusText(status) {
+  if (status === "interview") return "INTERVIEW";
+  if (status === "rejected") return "REJECTED";
+  return "NOT APPLIED";
+}
+
