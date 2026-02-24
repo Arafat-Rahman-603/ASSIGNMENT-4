@@ -134,3 +134,14 @@ function statusText(status) {
   return "NOT APPLIED";
 }
 
+function statusStyle(status) {
+  if (status === "interview") return "bg-green-50 text-green-700";
+  if (status === "rejected") return "bg-red-50 text-red-600";
+  return "bg-blue-50 text-blue-700";
+}
+
+function setStatus(index, status) {
+  jobs[index].status = status;
+  renderJobs();
+}
+
