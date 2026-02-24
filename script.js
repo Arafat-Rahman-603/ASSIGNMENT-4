@@ -145,3 +145,8 @@ function setStatus(index, status) {
   renderJobs();
 }
 
+function deleteJob(index) {
+  jobs.splice(index, 1);
+  renderJobs();
+}
+
