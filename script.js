@@ -150,3 +150,20 @@ function deleteJob(index) {
   renderJobs();
 }
 
+function updateStats(filteredCount) {
+  const total = jobs.length;
+  const interview = jobs.filter((j) => j.status === "interview").length;
+  const rejected = jobs.filter((j) => j.status === "rejected").length;
+
+  document.getElementById("totalCount").textContent = total;
+  document.getElementById("interviewCount").textContent = interview;
+  document.getElementById("rejectedCount").textContent = rejected;
+
+  document.getElementById("jobCounter").innerHTML = `
+    <p>${filteredCount}</p>
+    <p>of</p>
+    <p>${total} jobs</p>
+  `;
+}
+
+renderJobs();
